@@ -5,9 +5,9 @@ version := "0.1"
 scalaVersion := "2.13.1"
 
 
-val circeVersion = "0.12.3"
-
 libraryDependencies +=  "org.scalaj" %% "scalaj-http" % "2.4.2"
+
+val circeVersion = "0.12.3"
 
 libraryDependencies ++= Seq(
   "io.circe" %% "circe-core",
