@@ -20,7 +20,7 @@ object HttpJsonRequestAndParse extends App {
   //decode
   val decodedPeople = decode[People](response.body)
   println(decodedPeople)
-  val people = decodedPeople.getOrElse(People("", 1, 1, "", "", Seq()))
+  val people = decodedPeople.right.get//getOrElse(People("", 1, 1, "", "", Seq()))
   println(people)
   //encode
   println(s" encoded to json \n ${people.asJson}")

@@ -1,7 +1,7 @@
 package swapiJSONdemo
 
 object SwApiDemo extends App{
-  val p1 = People.getById(1)
+  val p1 = People.getById(11)
   println(p1)
   p1 match {
     case Some(person) =>
