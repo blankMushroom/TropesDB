@@ -15,8 +15,12 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-parser"
 ).map(_ % circeVersion)
 
-
-
 libraryDependencies += "org.jsoup" % "jsoup" % "1.12.1"
+
+libraryDependencies ++= Seq(
+  "org.scalikejdbc" %% "scalikejdbc"       % "3.4.0",
+  "com.h2database"  %  "h2"                % "1.4.200",
+  "ch.qos.logback"  %  "logback-classic"   % "1.2.3"
+)
 
 
