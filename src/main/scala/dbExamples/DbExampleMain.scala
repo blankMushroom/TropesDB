@@ -6,6 +6,7 @@ object DbExampleMain {
 
   def main(args: Array[String]): Unit = {
     initDb()
+    ConsoleInterface.run()
   }
 
   def initDb(): Unit ={
@@ -15,7 +16,7 @@ object DbExampleMain {
 //    ConnectionPool.singleton("jdbc:h2:mem:db", "user", "pass")
 
     initTables()
-    ConsoleInterface.run()
+
 
 //    Hooman.addHooman("Andrey")
 //    Hooman.addHooman("Adolf Alexandrovich")

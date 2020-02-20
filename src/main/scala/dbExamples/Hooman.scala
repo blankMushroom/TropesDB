@@ -9,13 +9,13 @@ object Hooman{
     sql"""
          SELECT *
          FROM Hoomans
-         WHERE EXISTS (
+         WHERE name = $name AND EXISTS (
             SELECT * FROM Relations WHERE HoomanId = Hoomans.id
          )
        """.map(x => x).single().apply().nonEmpty
   }
 
-  def getId(name:String):Option[Int] = {
+  def getId(name:String):Option[Int] = {//None Some(4)
     implicit val session = AutoSession
     sql"""
          SELECT *
@@ -24,15 +24,17 @@ object Hooman{
          """.map(rs => rs.int("id")).single().apply()
   }
 
+
   def addHooman(name:String) :Unit = {
     implicit val session = AutoSession
-    sql"""insert into Hoomans(name) VALUES($name)""".update().apply
+    //"); drop table Doges"
+    sql"""insert into Hoomans(name) VALUES($name)""".update().apply()
   }
 
   def reqHoomans():Seq[Hooman] = {
     implicit val session = AutoSession
     sql"""select * from Hoomans"""
-      .map(rs => Hooman(rs.int("id"), rs.string("name"))). list().apply()
+      .map(rs => Hooman(rs.int("id"), rs.string("name"))).list().apply()
   }
 }
 
