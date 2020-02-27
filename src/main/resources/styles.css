@@ -10,7 +10,9 @@ p {
     float:right;
     padding:20px;
 }
-
+body{
+  background-image:url("bg.png");
+}
 .container{
     display:grid;
     grid-template-columns:[left]1fr [middle]3fr [right]1fr;
