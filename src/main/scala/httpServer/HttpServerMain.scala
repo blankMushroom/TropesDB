@@ -13,8 +13,9 @@ object HttpServerMain extends App {
   var humans: Seq[Human] = for (i <- 1 to 10) yield Human(w(new Random().nextInt(w.size)) + w(new Random().nextInt(w.size)) + w(new Random().nextInt(w.size)), i)
 
   //  Spark.staticFileLocation("/serverData/")
-  Spark.externalStaticFileLocation("/home/azu/Documents/scala-newtworking-test/serverData")
+//  Spark.ipAddress("192.168.3.255")
   Spark.port(8080)
+  Spark.externalStaticFileLocation("/home/azu/Documents/scala-newtworking-test/serverData")
   Spark.get("/", (request: Request, response: Response) => PageTemplate.genPage("<h1>MAIN PAGE</h1>"))
   Spark.get("/add", (request: Request, response: Response) => PageTemplate.genPage(
     form(method := "post", action :="/addNew")(
