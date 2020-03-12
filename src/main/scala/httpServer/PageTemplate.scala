@@ -23,8 +23,7 @@ object PageTemplate {
        |        <ul>
        |            <li><a href="/list"> list</a></li>
        |            <li><a href="/add"> add</a></li>
-       |            <li> three</li>
-       |            <li> four</li>
+       |            <li><a href="/find"> find</a></li>
        |        </ul>
        |    </div>
        |    <div class="ad">
