@@ -20,6 +20,8 @@ object Client extends App {
 
   println(fromServer.nextLine())//others anime
 
+//  if(fromServer.hasNextLine)fromServer.nextLine()
+
 
 
 
