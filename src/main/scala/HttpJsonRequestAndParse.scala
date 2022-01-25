@@ -3,7 +3,7 @@ import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
 
 object HttpJsonRequestAndParse extends App {
 
-
+ //test string
 
   val response: HttpResponse[String] = Http("https://swapi.co/api/people/1/").param("format", "json").asString
   println(s"response\n${response.body}")
