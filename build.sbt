@@ -15,9 +15,9 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-parser"
 ).map(_ % circeVersion)
 
-//databases
+//html parsing
 libraryDependencies += "org.jsoup" % "jsoup" % "1.12.1"
-
+//databases
 libraryDependencies ++= Seq(
   "org.scalikejdbc" %% "scalikejdbc"       % "3.4.0",
   "com.h2database"  %  "h2"                % "1.4.200",
