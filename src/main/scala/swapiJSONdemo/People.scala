@@ -5,7 +5,7 @@ import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
 
 
 object People{
-  def getById(id:Int):Option[People] = downloadFromUrl(s"https://swapi.co/api/people/$id/")
+  def getById(id:Int):Option[People] = downloadFromUrl(s"https://swapi.dev/api/people/$id/")
 
   def downloadFromUrl(url:String ):Option[People] = {
     try {
