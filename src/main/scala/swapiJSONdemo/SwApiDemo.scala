@@ -5,7 +5,7 @@ object SwApiDemo extends App{
   println(p1)
   p1 match {
     case Some(person) =>
-      val ships = person.starships.flatMap(Ship.downloadFromUrl)
+      val ships:Seq[Ship] = person.starships.flatMap(Ship.downloadFromUrl)
       println(ships)
       val pilots = ships.flatMap(s => s.pilots).toSet.flatMap(People.downloadFromUrl).map(_.name)
       println(pilots)
