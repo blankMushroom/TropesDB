@@ -1,5 +1,6 @@
 package httpServer
 
+import org.slf4j.LoggerFactory
 import spark.{Request, Response, Route, Spark}
 
 import scala.util.Random
@@ -7,15 +8,22 @@ import scalatags.Text.all._
 
 object HttpServerMain extends App {
 
-  case class Human(name: String, id: Int)
+  val log = LoggerFactory.getLogger(this.getClass)
+  log.info(s"Starting application....")
 
-  val w: Seq[String] = Seq("am", "la", "da", "de", "do", "lu")
+  //Данные, в полноценной версии их нужно брать из БД
+  case class Human(name: String, id: Int)
+  val w: Seq[String] = Seq("ma", "sha", "ti", "mur", "ha", "bib")
   var humans: Seq[Human] = for (i <- 1 to 10) yield Human(w(new Random().nextInt(w.size)) + w(new Random().nextInt(w.size)) + w(new Random().nextInt(w.size)), i)
 
-  //  Spark.staticFileLocation("/serverData/")
-  //  Spark.ipAddress("192.168.3.255")
+  //Spark.staticFileLocation("/serverData/")
+  Spark.externalStaticFileLocation("serverData")
+
+  Spark.ipAddress("0.0.0.0")
   Spark.port(8080)
-  Spark.externalStaticFileLocation("/home/azu/Documents/scala-newtworking-test/serverData")
+
+
+  log.info(s"Setting up endpoints...")
   Spark.get("/", (request: Request, response: Response) => PageTemplate.genPage("<h1>MAIN PAGE</h1>"))
   Spark.get("/add", (request: Request, response: Response) => PageTemplate.genPage(
     form(method := "post", action := "/addNew")(
@@ -58,7 +66,7 @@ object HttpServerMain extends App {
   val findId = "findId"
   val resultDivID = "resultDivId"
   val findReqPath = "findReq"
-  val host = "http://localhost:8080"
+  val host = ""
 
   val findJs =
     s"""
@@ -104,12 +112,15 @@ object HttpServerMain extends App {
       )
     ).render
   ))
+
   Spark.get(s"/$findReqPath", (request: Request, response: Response) =>{
     val q = request.queryParams("q")
-    print(s"Requested info about: $q")
-    val result = humans.filter(h => h.name.contains(q))
+    log.info(s"Requested info about: $q")
+    val result: Seq[Human] = humans.filter(h => h.name.contains(q))
+    log.info(s"Found results $result")
     import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
     result.asJson
-  }
-  )
+  } )
+
+  log.info(s"Server initialization finished.")
 }

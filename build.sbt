@@ -27,3 +27,7 @@ libraryDependencies ++= Seq(
 libraryDependencies += "com.sparkjava"  % "spark-core" % "2.8.0"
 //html generator
 libraryDependencies += "com.lihaoyi" %% "scalatags" % "0.8.5"
+
+retrieveManaged := true
+managedDirectory := baseDirectory.value / "libs"
+useCoursier := false
